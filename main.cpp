@@ -1,5 +1,19 @@
+//Esteban Mora & gourp
+//1/22/2026
+//CPSC-25-12703
+
 #include <iostream>
 #include <fstream>
+
+// Adding colors
+const int PALETTE_SIZE = 5;
+
+int red[PALETTE_SIZE]   = { 66, 25,  9,   0, 255 };
+int green[PALETTE_SIZE] = { 30,  7,  1,   0, 255 };
+int blue[PALETTE_SIZE]  = { 15, 26, 47, 100, 255 };
+int purple[PALETTE_SIZE] = { red[0] + blue[0], red[1] + blue[1], red[2] + blue[2], red[3] + blue[3], red[4] + blue[4] };
+int yellow[PALETTE_SIZE] = { red[0] + green[0], red[1] + green[1], red[2] + green[2], red[3] + green[3], red[4] + green[4] };
+
 
 int main() {
     const int WIDTH = 800;
