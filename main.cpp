@@ -36,6 +36,23 @@ int main() {
     // Push Mandelbrot data into JS arrays
     out << "let data = img.data;\n";
 
+    out << "const PALETTE_SIZE = " << PALETTE_SIZE << ";\n";
+
+    out << "const red = [";
+    for (int i = 0; i < PALETTE_SIZE; i++) 
+    out << red[i] << (i < PALETTE_SIZE - 1 ? ", " : "");
+    out << "];\n";
+
+    out << "const green = [";
+    for (int i = 0; i < PALETTE_SIZE; i++) 
+    out << green[i] << (i < PALETTE_SIZE - 1 ? ", " : "");
+    out << "];\n";
+
+    out << "const blue = [";
+    for (int i = 0; i < PALETTE_SIZE; i++) 
+    out << blue[i] << (i < PALETTE_SIZE - 1 ? ", " : "");
+    out << "];\n";
+
     out << "let i = 0;\n";
     out << "for (let y = 0; y < " << HEIGHT << "; y++) {\n";
     out << "  for (let x = 0; x < " << WIDTH << "; x++) {\n";
