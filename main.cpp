@@ -8,11 +8,9 @@
 // Adding colors
 const int PALETTE_SIZE = 6;
 
-int red[PALETTE_SIZE]   = { 54, 250, 90, 10, 5, 36 };
-int green[PALETTE_SIZE] = { 243, 70, 10, 100, 25, 80 };
-int blue[PALETTE_SIZE]  = { 100, 100, 92, 150, 205, 106 };
-int purple[PALETTE_SIZE] = { red[0] + blue[0], red[1] + blue[1], red[2] + blue[2], red[3] + blue[3], red[4] + blue[4], red[5] + blue[5] };
-int yellow[PALETTE_SIZE] = { red[0] + green[0], red[1] + green[1], red[2] + green[2], red[3] + green[3], red[4] + green[4], red[5] + green[5] };
+int red[PALETTE_SIZE]   = { 54, 25, 90, 10, 5, 36 };
+int green[PALETTE_SIZE] = { 24, 70, 10, 10, 25, 80 };
+int blue[PALETTE_SIZE]  = { 10, 10, 92, 15, 20, 10 };
 
 
 int main() {
@@ -32,7 +30,6 @@ int main() {
     out << "const canvas = document.getElementById('c');\n";
     out << "const ctx = canvas.getContext('2d');\n";
     out << "const img = ctx.createImageData(" << WIDTH << ", " << HEIGHT << ");\n";
-
     // Push Mandelbrot data into JS arrays
     out << "let data = img.data;\n";
 
@@ -67,14 +64,21 @@ int main() {
     out << "      iter--;\n";
     out << "    }\n";
 
-    // Color 
-    out << "    let color = iter | (iter << 8);\n";
-    out << "    data[i++] = (color >> 16) & 255;\n";
-    out << "    data[i++] = (color >> 8) & 255;\n";
-    out << "    data[i++] = color & 255;\n";
-    out << "    data[i++] = 255;\n";   // alpha
-    out << "  }\n";
-    out << "}\n";
+    // option A
+    out << "    if (iter === 0) {\n";
+    out << "      data[i++] = 0;\n";
+    out << "      data[i++] = 0;\n";
+    out << "      data[i++] = 0;\n";
+    out << "      data[i++] = 255;\n"; // alpha
+    out << "      continue;\n";
+    out << "    } else {\n";
+    out << "      let used = " << MAX_ITER << " - iter;\n";
+    out << "      iter = (used % PALETTE_SIZE);\n";
+    out << "      data[i++] = red[iter];\n";
+    out << "      data[i++] = green[iter];\n";
+    out << "      data[i++] = blue[iter];\n";
+    out << "      data[i++] = 255;\n"; // alpha
+    out << "    }\n";
 
     out << "ctx.putImageData(img, 0, 0);\n";
     out << "</script>\n</body>\n</html>\n";
