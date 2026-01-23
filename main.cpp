@@ -14,16 +14,20 @@ int blue[PALETTE_SIZE]  = { 10, 10, 92, 15, 20, 10 };
 
 
 int main() {
+
+    // image dimensions
     const int WIDTH = 800;
     const int HEIGHT = 600;
     const int MAX_ITER = 300;
 
+    // make and open the HTML file
     std::ofstream out("mandelbrot.html");
     if (!out) {
         std::cerr << "Error opening HTML output file\n";
         return 1;
     }
 
+    // Write the HTML and JavaScript code to generate the Mandelbrot set
     out << "<!DOCTYPE html>\n<html>\n<body>\n";
     out << "<canvas id='c' width='" << WIDTH << "' height='" << HEIGHT << "'></canvas>\n";
     out << "<script>\n";
@@ -34,7 +38,8 @@ int main() {
     out << "let data = img.data;\n";
 
     out << "const PALETTE_SIZE = " << PALETTE_SIZE << ";\n";
-
+   
+    // Define color arrays in JS
     out << "const red = [";
     for (int i = 0; i < PALETTE_SIZE; i++) 
     out << red[i] << (i < PALETTE_SIZE - 1 ? ", " : "");
@@ -50,6 +55,7 @@ int main() {
     out << blue[i] << (i < PALETTE_SIZE - 1 ? ", " : "");
     out << "];\n";
 
+    // Mandelbrot calculation and pixel coloring
     out << "let i = 0;\n";
     out << "for (let y = 0; y < " << HEIGHT << "; y++) {\n";
     out << "  for (let x = 0; x < " << WIDTH << "; x++) {\n";
@@ -65,6 +71,7 @@ int main() {
     out << "    }\n";
 
     // option A
+    // Color based on iteration count
     out << "    if (iter === 0) {\n";
     out << "      data[i++] = 0;\n";
     out << "      data[i++] = 0;\n";
@@ -83,6 +90,7 @@ int main() {
     out << "  }\n";
     out << "}\n";
 
+    // Draw the image on the canvas
     out << "ctx.putImageData(img, 0, 0);\n";
     out << "</script>\n</body>\n</html>\n";
 
