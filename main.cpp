@@ -1,4 +1,4 @@
-//Esteban Mora & gourp
+//Esteban Mora, group w/ Garret & Carlos
 //1/22/2026
 //CPSC-25-12703
 
@@ -6,13 +6,13 @@
 #include <fstream>
 
 // Adding colors
-const int PALETTE_SIZE = 5;
+const int PALETTE_SIZE = 6;
 
-int red[PALETTE_SIZE]   = { 66, 25,  9,   0, 255 };
-int green[PALETTE_SIZE] = { 30,  7,  1,   0, 255 };
-int blue[PALETTE_SIZE]  = { 15, 26, 47, 100, 255 };
-int purple[PALETTE_SIZE] = { red[0] + blue[0], red[1] + blue[1], red[2] + blue[2], red[3] + blue[3], red[4] + blue[4] };
-int yellow[PALETTE_SIZE] = { red[0] + green[0], red[1] + green[1], red[2] + green[2], red[3] + green[3], red[4] + green[4] };
+int red[PALETTE_SIZE]   = { 54, 250, 90, 10, 5, 36 };
+int green[PALETTE_SIZE] = { 243, 70, 10, 100, 25, 80 };
+int blue[PALETTE_SIZE]  = { 100, 100, 92, 150, 205, 106 };
+int purple[PALETTE_SIZE] = { red[0] + blue[0], red[1] + blue[1], red[2] + blue[2], red[3] + blue[3], red[4] + blue[4], red[5] + blue[5] };
+int yellow[PALETTE_SIZE] = { red[0] + green[0], red[1] + green[1], red[2] + green[2], red[3] + green[3], red[4] + green[4], red[5] + green[5] };
 
 
 int main() {
