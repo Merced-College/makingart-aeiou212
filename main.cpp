@@ -80,6 +80,9 @@ int main() {
     out << "      data[i++] = 255;\n"; // alpha
     out << "    }\n";
 
+    out << "  }\n";
+    out << "}\n";
+
     out << "ctx.putImageData(img, 0, 0);\n";
     out << "</script>\n</body>\n</html>\n";
 
